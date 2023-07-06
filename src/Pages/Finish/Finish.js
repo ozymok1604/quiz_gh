@@ -40,7 +40,7 @@ const Finish = () => {
             )}
             <span>
               <button
-                onClick={() => handleNavigate("/")}
+                onClick={() => handleNavigate("/quiz_gh")}
                 className={styles.home_button}
               >
                 Go to Home

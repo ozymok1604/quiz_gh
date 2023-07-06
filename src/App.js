@@ -32,9 +32,9 @@ function App() {
     >
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/play" element={<Play />} />
-          <Route path="/finish" element={<Finish />} />
+          <Route path="/quiz_gh" exact element={<Home />} />
+          <Route path="/quiz_gh/play" exact element={<Play />} />
+          <Route path="/quiz_gh/finish" exact element={<Finish />} />
         </Routes>
       </BrowserRouter>
     </QuizzesContext.Provider>

@@ -4,13 +4,13 @@ import { QuizzesContext } from "../../context";
 
 import { useNavigate } from "react-router-dom";
 
-import { getRandomColor } from "../../utils/getRandomColor";
-
 import { getRandomArray } from "../../utils/getRandomArray";
 
-import styles from "./styles.module.scss";
 import { Container } from "../../Components/Container";
+
 import { Answer } from "../../Components/Answer";
+
+import styles from "./styles.module.scss";
 
 const Play = () => {
   const navigate = useNavigate();
@@ -78,7 +78,7 @@ const Play = () => {
               </div>
             )}
             <button
-              onClick={() => handleNavigate("/")}
+              onClick={() => handleNavigate("/quiz_gh")}
               className={styles.cancel_button}
             >
               Cancel a Quiz

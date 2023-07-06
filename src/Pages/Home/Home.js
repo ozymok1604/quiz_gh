@@ -37,7 +37,7 @@ const Home = () => {
     <div>
       <div className={styles.header}>Quizzes</div>
       <div className={styles.flex_container}>
-        <Link to="/play">
+        <Link to="quiz_gh/play">
           <button onClick={onLuckyClick} className={styles.lucky_button}>
             I'm lucky!
           </button>
