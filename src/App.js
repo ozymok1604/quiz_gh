@@ -31,7 +31,7 @@ function App() {
     >
       <BrowserRouter basename="/quiz_gh">
         <Routes>
-          <Route path="/quiz_gh" element={<Home />} />
+          <Route exact path="/quiz_gh" element={<Home />} />
           <Route path="/play" element={<Play />} />
           <Route path="/finish" element={<Finish />} />
         </Routes>
