@@ -24,7 +24,7 @@ const Card = ({ category }) => {
     >
       <div className={styles.name}>{questions?.[0]?.category}</div>
       <div>Questions: 10</div>
-      <Link to={"/play"}>
+      <Link to={"/quiz_gh/play"}>
         <button
           disabled={isLoading}
           onClick={() => onHandleClick(questions)}

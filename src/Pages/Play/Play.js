@@ -22,7 +22,7 @@ const Play = () => {
     setIsLoading(true);
   };
   const onFinishQuestion = () => {
-    handleNavigate("/finish");
+    handleNavigate("/quiz_gh/finish");
   };
 
   const onAnswer = (answer) => {
