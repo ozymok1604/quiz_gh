@@ -4,27 +4,23 @@ import { QuizzesContext } from "../../context";
 
 import { useNavigate } from "react-router-dom";
 
-import { getRandomColor } from "../../features/randomColor";
+import { getRandomColor } from "../../utils/getRandomColor";
 
-import { shuffle } from "../../features/randomArray";
+import { getRandomArray } from "../../utils/getRandomArray";
 
 import styles from "./styles.module.scss";
+import { Container } from "../../Components/Container";
+import { Answer } from "../../Components/Answer";
 
 const Play = () => {
+  const navigate = useNavigate();
   const { quizziz, setResult, setIsLoading, result, quizName } =
     useContext(QuizzesContext);
-
   const [questionNumber, setQuestionNumber] = useState(0);
-
-  const navigate = useNavigate();
-
   const handleNavigate = (route) => {
     navigate(route);
     setIsLoading(true);
   };
-
-  console.log(quizziz[questionNumber]?.correct_answer);
-
   const onFinishQuestion = () => {
     handleNavigate("/finish");
   };
@@ -33,7 +29,7 @@ const Play = () => {
     setQuestionNumber(questionNumber + 1);
     answer == quizziz[questionNumber]?.correct_answer
       ? setResult(result + 1)
-      : console.log("Incorrect!");
+      : setResult(result);
     questionNumber == 9 ? onFinishQuestion() : console.log("play");
   };
 
@@ -46,57 +42,50 @@ const Play = () => {
         quizziz[questionNumber]?.correct_answer,
       ];
 
-  shuffle(answers);
+  getRandomArray(answers);
 
   return (
     <div>
       <div className={styles.text}>You selected: {quizName}</div>
       <div className={styles.header}>Question {questionNumber + 1}</div>
 
-      <div className={styles.flex_container}>
-        <div className={styles.question}>
-          {quizziz[questionNumber].question}
-        </div>
+      <Container
+        children={
+          <>
+            <div className={styles.question}>
+              {quizziz[questionNumber].question}
+            </div>
 
-        {!isBoolean ? (
-          <div className={styles.answers}>
-            {answers?.map((item) => {
-              return (
-                <div
-                  style={{ backgroundColor: getRandomColor() }}
-                  className={styles.answerCard}
-                  onClick={() => onAnswer(item)}
-                >
-                  {item}
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div className={styles.answers}>
-            <div
-              style={{ backgroundColor: "red" }}
-              className={styles.answerCard}
-              onClick={() => onAnswer("False")}
+            {!isBoolean ? (
+              <div className={styles.answers}>
+                {answers?.map((item) => (
+                  <Answer answer={item} onClick={() => onAnswer(item)} />
+                ))}
+              </div>
+            ) : (
+              <div className={styles.answers}>
+                <Answer
+                  style={{ backgroundColor: "red" }}
+                  answer={"False"}
+                  onClick={() => onAnswer("False")}
+                />
+
+                <Answer
+                  style={{ backgroundColor: "green" }}
+                  answer={"True"}
+                  onClick={() => onAnswer("True")}
+                />
+              </div>
+            )}
+            <button
+              onClick={() => handleNavigate("/")}
+              className={styles.cancel_button}
             >
-              False
-            </div>
-            <div
-              style={{ backgroundColor: "green" }}
-              className={styles.answerCard}
-              onClick={() => onAnswer("True")}
-            >
-              True
-            </div>
-          </div>
-        )}
-        <button
-          onClick={() => handleNavigate("/")}
-          className={styles.cancel_button}
-        >
-          Cancel a Quiz
-        </button>
-      </div>
+              Cancel a Quiz
+            </button>
+          </>
+        }
+      />
     </div>
   );
 };

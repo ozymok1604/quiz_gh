@@ -1,21 +1,12 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-const useStyles = makeStyles({
-  root: {
-    position: "absolute",
-    left: "50%",
-    top: "50%",
-    transform: "translate(-50%, -50%)",
-  },
-});
+import styles from "./styles.module.scss";
 
 const Loader = () => {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <div className={styles.loader}>
       <CircularProgress color="secondary" size={100} />
     </div>
   );

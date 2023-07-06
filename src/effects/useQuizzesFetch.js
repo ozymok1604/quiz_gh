@@ -4,17 +4,16 @@ import axios from "axios";
 
 import { QuizzesContext } from "../context";
 
-const url = "https://opentdb.com/api.php?";
+import { BASE_URL } from "../constants";
 
 const useQuizzesFetch = (category) => {
   const { setIsLoading } = useContext(QuizzesContext);
-
   const [questions, setQuestions] = useState([]);
 
   const getQuestions = async () => {
     try {
       setIsLoading(true);
-      const response = await axios(url + `amount=10&category=${category}`);
+      const response = await axios(`${BASE_URL}amount=10&category=${category}`);
       setQuestions(response.data.results);
     } catch (error) {
       console.log(error);

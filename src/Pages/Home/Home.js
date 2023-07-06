@@ -19,11 +19,13 @@ const categoriesArray = Array(10)
   .fill()
   .map(() => Math.floor(Math.random() * (max - min + 1)) + min);
 
+const getRandomCategory = (array) => {
+  return array[Math.floor(Math.random() * 9)];
+};
+
 const Home = () => {
   const { isLoading, setQuizziz, setQuizName } = useContext(QuizzesContext);
-
-  const randomCategory = categoriesArray[Math.floor(Math.random() * 9)];
-
+  const randomCategory = getRandomCategory(categoriesArray);
   const questions = useQuizzesFetch(randomCategory);
 
   const onLuckyClick = () => {
@@ -34,8 +36,8 @@ const Home = () => {
   return (
     <div>
       <div className={styles.header}>Quizzes</div>
-      <div className={styles.flex}>
-        <Link to={"/play"}>
+      <div className={styles.flex_container}>
+        <Link to="/play">
           <button onClick={onLuckyClick} className={styles.lucky_button}>
             I'm lucky!
           </button>

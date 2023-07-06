@@ -6,32 +6,24 @@ import { useQuizzesFetch } from "../../effects/useQuizzesFetch";
 
 import { Link } from "react-router-dom";
 
-import { getRandomColor } from "../../features/randomColor";
+import { getRandomColor } from "../../utils/getRandomColor";
 
 import styles from "./styles.module.scss";
 
 const Card = ({ category }) => {
   const questions = useQuizzesFetch(category);
-
   const { setQuizziz, isLoading, setQuizName } = useContext(QuizzesContext);
-
   const onHandleClick = (quizziz) => {
     setQuizziz(quizziz);
     setQuizName(quizziz[0].category);
   };
-
   return (
     <div
-      style={
-        isLoading
-          ? { backgroundColor: "gray" }
-          : { backgroundColor: getRandomColor() }
-      }
+      style={{ backgroundColor: isLoading ? "gray" : getRandomColor() }}
       className={styles.card}
     >
       <div className={styles.name}>{questions?.[0]?.category}</div>
       <div>Questions: 10</div>
-
       <Link to={"/play"}>
         <button
           disabled={isLoading}
