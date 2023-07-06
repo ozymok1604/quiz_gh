@@ -29,9 +29,9 @@ function App() {
         setQuizName,
       }}
     >
-      <BrowserRouter>
+      <BrowserRouter basename="/quiz_gh">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/quiz_gh" element={<Home />} />
           <Route path="/play" element={<Play />} />
           <Route path="/finish" element={<Finish />} />
         </Routes>
